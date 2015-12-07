@@ -35,3 +35,8 @@ html, body {
 .md-tab {
   float: none;
 }
+
+#editor {
+  width: 600px;
+  height: 400px;
+}

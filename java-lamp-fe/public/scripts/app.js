@@ -51,6 +51,13 @@ function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
   };
 }
 
+app.directive('aceEditor', function() {
+  return {
+    template: 
+    '<div id="editor">function foo()</div> <script type="text/javascript" src="/scripts/ace_editor.js"></script>'
+  }
+});
+
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
   $routeProvider
     .when('/', {
