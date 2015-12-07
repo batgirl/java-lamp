@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+}
+
+html {
+  position: relative;
+}
+
+body {
+  height: 100%;
+  padding-bottom: 200px;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+.footer {
+  background-color: #d6d6d6;
+  padding-top: 15px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+/*.dialogdemoBasicUsage #popupContainer {
+  position: relative; }
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; }
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; }*/
