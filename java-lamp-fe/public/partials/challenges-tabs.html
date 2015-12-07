@@ -8,12 +8,53 @@
               <h2 class="questionHeader">Greatest Product</h2><br>
             </div>
           </div>
-          <div class="row">
+          <div class="row text-center">
             <div class="col-md-offset-3 col-md-6">
               <p class="lead questionText">Implement an algorithm to determine the greatest product between two elements in an array.</p>
             </div>
           </div>
-          <ace-editor></ace-editor>
+          <div class="row">
+            <div class="col-md-2"> 
+              <button class="showTest-btn btn btn-default" ng-click="showTest = !showTest">Test</button>
+              <button class="showAnswers-btn btn btn-default" ng-click="showAnswers = !showAnswers">Answers</button>
+            </div>
+            <div class="col-md-8">
+              <ace-editor></ace-editor>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-5 col-md-2">
+              <button class="submitCode-btn btn btn-success">Submit</button>
+            </div>
+          </div>
+          <div class="row" ng-cloak ng-show="showTest">
+            <div class="col-md-offset-3 col-md-6">
+              <pre><code data-language="javascript">describe('Greatest Product', function(){
+  it("returns greates product of pairs in array", function (){
+    expect(code.greatestProductOfPairs([2,3,4,-5,92,100])).toEqual(9200);
+    expect(code.greatestProductOfPairs([-2,-3,-4,-5,-92,100])).toEqual(460);
+  });
+});</code></pre>
+            </div>
+          </div>
+          <div class="row" ng-cloak ng-show="showAnswers">
+            <div class="col-md-offset-3 col-md-6">
+              <pre><code data-language="javascript">function(array){
+  var max = 0;
+  for(var i = 0; i &lt; array.length; i++){
+    for(var j = i+1; j &lt; array.length; j++){
+      var curr = array[i] * array[j];
+      if(curr > max){
+        max = curr;
+      }
+    }
+  }
+  return max;
+}</code></pre>
+            </div>
+          </div></code></pre>
+            </div>
+          </div>
         </md-content>
       </md-tab>
       <md-tab label="Review">
