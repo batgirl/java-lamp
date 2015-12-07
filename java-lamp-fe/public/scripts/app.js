@@ -54,7 +54,7 @@ function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
 app.directive('aceEditor', function() {
   return {
     template: 
-    '<div id="editor">function foo()</div> <script type="text/javascript" src="/scripts/ace_editor.js"></script>'
+    '<div id="editor">function foo()</div> <div id="editor2">function bar()</div> <script type="text/javascript" src="/scripts/ace_editor.js"></script>'
   }
 });
 

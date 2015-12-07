@@ -15,6 +15,10 @@ html, body {
   min-height: 100%;
 }
 
+.ng-view {
+  padding-bottom: 50px;
+}
+
 .footer {
   background-color: #d6d6d6;
   padding-top: 15px;
@@ -37,6 +41,12 @@ html, body {
 }
 
 #editor {
+  width: 600px;
+  height: 400px;
+}
+
+#editor2 {
+  margin-left: 600px;
   width: 600px;
   height: 400px;
 }
