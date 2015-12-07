@@ -26,6 +26,10 @@ html, body {
   height: 50px;
 }
 
+.questionHeader {
+  margin-left: 150px;
+}
+
 .registerButton {
   display: block;
   margin-left: auto;
@@ -37,6 +41,8 @@ html, body {
 }
 
 #editor {
+  margin-left: auto;
+  margin-right: auto;
   width: 600px;
   height: 400px;
 }
