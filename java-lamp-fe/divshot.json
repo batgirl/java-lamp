@@ -2,5 +2,5 @@
   "name": "java-lamp",
   "root": "public",
   "clean_urls": true,
-  "error_page": "y"
+  "error_page": "error.html"
 }
