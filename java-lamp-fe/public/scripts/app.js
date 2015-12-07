@@ -1,5 +1,6 @@
-angular.module('javaLamp', ['ngMaterial', 'ngMessages'])
-  .controller('NavbarController', function($rootScope, $scope, $mdDialog, $mdMedia) {
+var app = angular.module('javaLamp', ['ngMaterial', 'ngMessages', 'ngRoute'])
+
+app.controller('NavbarController', function($rootScope, $scope, $mdDialog, $mdMedia) {
     // $scope.status = "";
     $rootScope.selectedIndex = 0;
     $scope.showRegister = function(ev) {
@@ -29,6 +30,14 @@ angular.module('javaLamp', ['ngMaterial', 'ngMessages'])
 
 });
 
+app.controller('LandingController', function() {
+
+});
+
+app.controller('ChallengesController', function() {
+
+});
+
 function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
   $scope.selectedIndex = $rootScope.selectedIndex;
   $scope.hide = function() {
@@ -41,3 +50,22 @@ function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
     $mdDialog.hide(answer);
   };
 }
+
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
+  $routeProvider
+    .when('/', {
+      templateUrl: '/partials/landing.html',
+      controller: 'LandingController'
+    })
+    .when('/challenges', {
+      templateUrl: '/partials/challenges-tabs.html',
+      controller: 'ChallengesController'
+    }) 
+    .when('/page-not-found', {
+      templateUrl: '/partials/error.html'
+    })
+    .otherwise({
+      redirectTo: '/page-not-found'
+    });
+  $locationProvider.html5Mode(true);
+}]);
