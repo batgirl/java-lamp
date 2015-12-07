@@ -2,5 +2,8 @@
   "name": "java-lamp",
   "root": "public",
   "clean_urls": true,
-  "error_page": "error.html"
+  "error_page": "error.html",
+  "rewrites": [
+    {"source":"**/**","destination":"/index.html"}
+  ]
 }
