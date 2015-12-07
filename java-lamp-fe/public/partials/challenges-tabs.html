@@ -15,8 +15,10 @@
           </div>
           <div class="row">
             <div class="col-md-2"> 
-              <button class="showTest-btn btn btn-default" ng-click="showTest = !showTest">Test</button>
-              <button class="showAnswers-btn btn btn-default" ng-click="showAnswers = !showAnswers">Answers</button>
+              <!-- <button class="showTest-btn btn btn-default" ng-click="showTest = !showTest">Test</button> -->
+              <!-- <button class="showAnswers-btn btn btn-default" ng-click="showAnswers = !showAnswers">Answers</button> -->
+              <md-button md-theme="buttonTheme" class="showTest-btn md-raised md-accent" ng-click="showTest = !showTest">Test</md-button>
+              <md-button md-theme="buttonTheme" class="showAnswers-btn md-raised md-primary" ng-click="showAnswers = !showAnswers">Answers</md-button>
             </div>
             <div class="col-md-8">
               <ace-editor></ace-editor>
@@ -24,7 +26,8 @@
           </div>
           <div class="row">
             <div class="col-md-offset-5 col-md-2">
-              <button class="submitCode-btn btn btn-success">Submit</button>
+              <md-button class="submitCode-btn md-raised md-warn">Submit</md-button>
+              <!-- <button class="submitCode-btn btn btn-success">Submit</button> -->
             </div>
           </div>
           <div class="row" ng-cloak ng-show="showTest">

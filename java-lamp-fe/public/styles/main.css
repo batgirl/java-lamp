@@ -65,6 +65,8 @@ pre {
 }
 
 .showTest-btn, .showAnswers-btn {
+  color : rgb(49, 46, 46);
+  background-color: rgba(255, 222, 121, 0.96);
   width: 100%;
 }
 
@@ -79,4 +81,17 @@ pre {
 
 .codeHeader {
   margin-bottom: 5px;
+}
+
+.md-button {
+  color: white !important;
+  background-color: #11C9AC !important;
+}
+
+.md-button.md-buttonTheme-theme.md-primary {
+  background-color: #5A0DB2 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-accent {
+  background-color: #BF7E22 !important;
 }

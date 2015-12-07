@@ -58,7 +58,7 @@ app.directive('aceEditor', function() {
   }
 });
 
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
+app.config(['$routeProvider', '$locationProvider', '$mdThemingProvider', function ($routeProvider, $locationProvider, $mdThemingProvider){
   $routeProvider
     .when('/', {
       templateUrl: '/partials/landing.html',
@@ -75,4 +75,12 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       redirectTo: '/page-not-found'
     });
   $locationProvider.html5Mode(true);
+
+  $mdThemingProvider.theme('default')
+    .primaryPalette('indigo')
+    .accentPalette('indigo')
+    .warnPalette('deep-orange');
+
+  $mdThemingProvider.theme('buttonTheme');
+  
 }]);
