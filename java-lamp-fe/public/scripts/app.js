@@ -1,9 +1,9 @@
 angular.module('javaLamp', ['ngMaterial', 'ngMessages'])
-  .controller('NavbarController', function($scope, $mdDialog, $mdMedia) {
+  .controller('NavbarController', function($rootScope, $scope, $mdDialog, $mdMedia) {
     // $scope.status = "";
+    $rootScope.selectedIndex = 0;
     $scope.showRegister = function(ev) {
-      // make Register tab md-active
-      $scope.selectedIndex = 0;
+      $rootScope.selectedIndex = 0;
       $mdDialog.show({
         controller: DialogController,
         templateUrl:'partials/register-login-dialog.html',
@@ -14,8 +14,7 @@ angular.module('javaLamp', ['ngMaterial', 'ngMessages'])
     }
 
     $scope.showLogin = function(ev) {
-      // make Login tab md-active
-      $scope.selectedIndex = 1;
+      $rootScope.selectedIndex = 1;
       $mdDialog.show({
         controller: DialogController,
         templateUrl:'partials/register-login-dialog.html',
@@ -30,7 +29,8 @@ angular.module('javaLamp', ['ngMaterial', 'ngMessages'])
 
 });
 
-function DialogController($scope, $mdDialog) {
+function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
+  $scope.selectedIndex = $rootScope.selectedIndex;
   $scope.hide = function() {
     $mdDialog.hide();
   };

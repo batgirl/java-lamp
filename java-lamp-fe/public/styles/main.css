@@ -25,3 +25,9 @@ html, body {
   width: 100%;
   height: 50px;
 }
+
+.registerButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
