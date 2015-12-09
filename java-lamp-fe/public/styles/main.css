@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+}
+
+html {
+  position: relative;
+}
+
+body {
+  height: 100%;
+  padding-bottom: 200px;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+.ng-view {
+  padding-bottom: 50px;
+}
+
+.footer {
+  background-color: #d6d6d6;
+  padding-top: 15px;
+  text-align: center;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.questionHeader {
+  font-weight: bolder;
+}
+
+.questionText {
+  margin-top: -20px;
+  margin-bottom: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.registerButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.md-tab {
+  float: none;
+}
+
+#editor, .ace_editor {
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 400px;
+}
+
+pre {
+  border-radius: 0;
+}
+
+.showTest-btn, .showAnswers-btn {
+  color : rgb(49, 46, 46);
+  background-color: rgba(255, 222, 121, 0.96);
+  width: 100%;
+}
+
+.showTest-btn {
+  margin-bottom: 10px;
+}
+
+.submitCode-btn {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.codeHeader {
+  margin-bottom: 5px;
+}
+
+.navbar-default {
+  /*background: #2F2D5C;*/
+}
+
+/*.md-button {
+  color: white !important;
+  background-color: #11C9AC !important;
+}
+
+.md-button.md-buttonTheme-theme.md-primary {
+  background-color: #5A0DB2 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-accent {
+  background-color: #BF7E22 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-warn {
+  background-color: #5A0DB2 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-background {
+  background-color: #5A0DB2 !important;*/
+}

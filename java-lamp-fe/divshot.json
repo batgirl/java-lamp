@@ -1,0 +1,17 @@
+{
+  "name": "java-lamp",
+  "root": "public",
+  "clean_urls": true,
+  "error_page": "error.html",
+  "routes": [
+    {
+      "/challenges.html": "challenges-tabs.html"
+      },    
+    {
+      "/": "landing.html"
+    },
+    {
+      "**": "error.html"
+    }
+  ]
+}

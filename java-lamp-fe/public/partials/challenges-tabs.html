@@ -1,0 +1,69 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Challenges">
+        <md-content class="md-padding">
+          <div ng-repeat="question in questions">
+            <div ng-if="question_index == $index">
+            <md-button class="md-raised md-primary" ng-click="previous()">Previous</md-button>
+            <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+            <div class="row">
+              <div class="col-md-offset-3 col-md-3">
+                <h2 class="questionHeader">{{question.title}}</h2><br>
+              </div>
+            </div>
+            <div class="row text-center">
+              <div class="col-md-offset-3 col-md-6">
+                <p class="lead questionText">{{question.questionText}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"> 
+                <md-button class="showTest-btn md-raised md-primary" ng-click="scrollTo('test', $event)">Test</md-button>
+                <md-button class="showAnswers-btn md-raised md-primary" ng-click="showAnswers = !showAnswers">Answers</md-button>
+              </div>
+              <div class="col-md-8">
+                <!-- <ace-editor></ace-editor> -->
+                <div ui-ace>{{}}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-offset-5 col-md-2">
+                <md-button class="submitCode-btn md-raised md-accent" ng-click="submit()">Submit</md-button>
+                <!-- <button class="submitCode-btn btn btn-success">Submit</button> -->
+              </div>
+            </div>
+            <div class="row" ng-cloak ng-show="showTest">
+              <div class="col-md-offset-3 col-md-6">
+                <p class="codeHeader lead text-center">Test Code</p>
+                <pre><code data-language="javascript">{{question.testText}}</code></pre>
+              </div>
+            </div>
+            <div class="row" ng-cloak ng-show="showAnswers">
+              <div class="col-md-offset-3 col-md-6">
+                <p id="anchor2" class="codeHeader lead text-center">Answer 1</p>
+                <pre><code data-language="javascript">{{question.answers}}</code></pre>
+              </div>
+            </div>
+          </div>
+          </div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Review">
+        <md-content class="md-padding">
+        <pre>$scope.showRegister = function(ev) {
+      $rootScope.selectedIndex = 0;
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl:'partials/register-login-dialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true
+      })
+    }</pre>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+
