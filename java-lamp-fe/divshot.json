@@ -3,7 +3,15 @@
   "root": "public",
   "clean_urls": true,
   "error_page": "error.html",
-  "rewrites": [
-    {"source":"**/**","destination":"/index.html"}
+  "routes": [
+    {
+      "/challenges.html": "challenges-tabs.html"
+      },    
+    {
+      "/": "landing.html"
+    },
+    {
+      "**": "error.html"
+    }
   ]
 }

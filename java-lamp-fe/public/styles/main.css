@@ -53,7 +53,7 @@ html, body {
   float: none;
 }
 
-#editor {
+#editor, .ace_editor {
   font-size: 16px;
   margin-bottom: 20px;
   width: 100%;
@@ -83,7 +83,11 @@ pre {
   margin-bottom: 5px;
 }
 
-.md-button {
+.navbar-default {
+  /*background: #2F2D5C;*/
+}
+
+/*.md-button {
   color: white !important;
   background-color: #11C9AC !important;
 }
@@ -94,4 +98,12 @@ pre {
 
 .md-button.md-buttonTheme-theme.md-accent {
   background-color: #BF7E22 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-warn {
+  background-color: #5A0DB2 !important;
+}
+
+.md-button.md-buttonTheme-theme.md-background {
+  background-color: #5A0DB2 !important;*/
 }
