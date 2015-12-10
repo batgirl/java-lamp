@@ -19,8 +19,8 @@
             </div>
             <div class="row">
               <div class="col-md-2"> 
-                <md-button class="showTest-btn md-raised md-primary" ng-click="scrollTo('test', $event)">Test</md-button>
-                <md-button class="showAnswers-btn md-raised md-primary" ng-click="showAnswers = !showAnswers">Answers</md-button>
+                <md-button class="showTest-btn md-raised md-primary" ng-click="scrollToTest()">Test</md-button>
+                <md-button class="showAnswers-btn md-raised md-primary" ng-click="scrollToAnswers()">Answers</md-button>
               </div>
               <div class="col-md-8">
                 <!-- <ace-editor></ace-editor> -->
@@ -29,7 +29,10 @@
                   mode: 'javascript',
                   onLoad: aceLoaded,
                   onChange: aceChanged
-                }">{{}}</div>
+                }">function foo() {
+
+
+              }</div>
               </div>
             </div>
             <div class="row">
@@ -38,6 +41,7 @@
                 <!-- <button class="submitCode-btn btn btn-success">Submit</button> -->
               </div>
             </div>
+            <div autoscroll-down>
             <div class="row" ng-cloak ng-show="showTest">
               <div class="col-md-offset-3 col-md-6">
                 <p class="codeHeader lead text-center">Test Code</p>
@@ -50,6 +54,7 @@
                 <pre><code data-language="javascript">{{question.answers}}</code></pre>
               </div>
             </div>
+          </div>
           </div>
           </div>
         </md-content>

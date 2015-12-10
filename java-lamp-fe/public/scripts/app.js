@@ -1,4 +1,4 @@
-var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngRoute' ])
+var app = angular.module('javaLamp', ['ui.ace', 'directives.autoscroll', 'ngMaterial', 'ngMessages', 'ngRoute' ])
 
 app.constant('API_URL', 'http://localhost:3000');
 
@@ -177,7 +177,6 @@ var customPrimary = {
 }]);
 
 app.controller('ChallengesController', function($scope, $location, $anchorScroll, DockerFactory) {
-  // $scope.isActive = true;
 
   $scope.questions = [
     {title: 'Is Unique',
@@ -229,27 +228,24 @@ app.controller('ChallengesController', function($scope, $location, $anchorScroll
       DockerFactory.dockerPost($scope.currentEditorValue);
     }
 
-  // $scope.$on('$locationChangeStart', function(ev) {
-  //   ev.preventDefault();
-  // });
-
   $scope.showTest = false;
-  $scope.scrollTo = function(id, event) {
+  $scope.scrollToTest = function() {
     $scope.showTest = !$scope.showTest;
-    // event.preventDefault();
-    // event.stopPropagation();
-    // $anchorScroll.yOffset = 400;
-    $location.hash(id);
-    $anchorScroll();
-    $location.hash(null);
-    // if ($scope.showTest) {
-      // $scope.anchorId = id;
-      // var old = $location.hash();
-      // $location.hash(id);
-      // console.log($location.hash())
-      // $location.hash(old); 
-    // }
-    // $scope.apply();
+    if ($scope.showTest) {
+      setTimeout(function() {
+        $(window).scrollTop(400);  
+      }, 0);
+    }
+  };  
+
+  $scope.showAnswers = false;
+  $scope.scrollToAnswers = function() {
+    $scope.showAnswers = !$scope.showAnswers;
+    if ($scope.showAnswers) {
+      setTimeout(function() {
+        $(window).scrollTop(600);  
+      }, 0);
+    }
   };
 });
 
