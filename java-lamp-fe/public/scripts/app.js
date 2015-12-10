@@ -176,7 +176,7 @@ var customPrimary = {
   
 }]);
 
-app.controller('ChallengesController', function($scope, $location, $anchorScroll, DockerFactory) {
+app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory) {
   // $scope.isActive = true;
 
   $scope.questions = [
@@ -226,7 +226,10 @@ app.controller('ChallengesController', function($scope, $location, $anchorScroll
 
     $scope.submit = function() {
       console.log('submitted');
-      DockerFactory.dockerPost($scope.currentEditorValue);
+      DockerFactory.dockerPost($scope.currentEditorValue)
+        .then(function success(response){
+          $scope.resultData = response.data;
+        })
     }
 
   // $scope.$on('$locationChangeStart', function(ev) {
@@ -259,8 +262,5 @@ app.factory('DockerFactory', function Docker($q, $http, API_URL) {
   }
   function dockerPost(editorValue) {
     return $http.post(API_URL + '/docker', {"data": editorValue})
-    .then(function success(response) {
-      console.log("response: ", response);
-    })
   }
 });
