@@ -70,8 +70,16 @@ pre {
   width: 100%;
 }
 
+.showTest-btn, .showAnswers-btn, .submitCode-btn {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .showTest-btn {
   margin-bottom: 10px;
+}
+.showAnswers-btn {
+  margin-bottom: 20px;
 }
 
 .submitCode-btn {

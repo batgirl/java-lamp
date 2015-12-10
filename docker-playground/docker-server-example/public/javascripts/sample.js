@@ -1,3 +1,3 @@
 console.log((function foo() {
-    return "hello"
+  return 5 * 5;
 })())

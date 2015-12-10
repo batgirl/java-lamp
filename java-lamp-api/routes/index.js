@@ -13,6 +13,8 @@ var conString = process.env.DATABASE_URL;
 //global
 var jwtSecret = process.env.SECRET;
 
+//protected
+// router.use(expressJwt({secret: process.env.SECRET}).unless({ path: [ '/login', '/register' ] }));
 
 //login
 router.post('/login', function(req, res, next) {
@@ -71,7 +73,7 @@ router.post('/register', function(req, res, next) {
     }
     console.log("connected to database");
     bcrypt.hash(req.body.user.password, 8, function(err, hash) {
-      client.query('INSERT INTO users(name, email, password) VALUES($1, $2, $3) returning id', [req.body.user.name, req.body.user.email, hash], function(err, result) {
+      client.query('INSERT INTO users(name, email, password) VALUES($1, $2, $3) returning id', [req.body.user.username, req.body.user.email, hash], function(err, result) {
         done();
         if(err) {
           return console.error('error running query', err);

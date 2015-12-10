@@ -10,7 +10,7 @@
               <div layout layout-sm="column">
                 <md-input-container flex>
                   <label>Username</label>
-                  <input name="username" required ng-model="user.username">
+                  <input name="username" required ng-model="userRegister.username">
                   <div ng-messages="register.username.$error">
                     <div ng-message="required">Username is required.</div>
                   </div>
@@ -19,7 +19,7 @@
               <div layout layout-sm="column">
                 <md-input-container flex>
                   <label>Email</label>
-                  <input name="email" required ng-model="user.email">
+                  <input name="email" required ng-model="userRegister.email">
                   <div ng-messages="register.email.$error">
                     <div ng-message="required">Email is required.</div>
                   </div>
@@ -28,15 +28,15 @@
               <div layout layout-sm="column">
                 <md-input-container flex>
                   <label>Password</label>
-                  <input name="password" required type="password" ng-model="user.password" minlength="8">
+                  <input name="password" required type="password" ng-model="userRegister.password" minlength="8">
                   <div ng-messages="register.password.$error" multiple>
                     <div ng-message="required">Password is required.</div>
                     <div ng-message="minlength">Your password must be at least 8 characters.</div>
                   </div>
                 </md-input-container>
               </div>
-              <div layout layout-sm="column">
-                <input class="btn btn-default registerButton" type="submit" value="Register">
+              <div ng-controller="LoginRegisterModalController" layout layout-sm="column">
+                <input ng-click="register(userRegister)" class="btn btn-default registerButton" type="submit" value="Register">
               </div>
             </form>
           </md-content>
@@ -48,7 +48,7 @@
               <div layout layout-sm="column">
                 <md-input-container flex>
                   <label>Username</label>
-                  <input name="username" required ng-model="user.username">
+                  <input name="username" required ng-model="userLogin.username">
                   <div ng-messages="register.username.$error">
                     <div ng-message="required">Username is required.</div>
                   </div>
@@ -57,14 +57,14 @@
               <div layout layout-sm="column">
                 <md-input-container flex>
                   <label>Password</label>
-                  <input name="password" required type="password" ng-model="user.password" minlength="8">
+                  <input name="password" required type="password" ng-model="userLogin.password" minlength="8">
                   <div ng-messages="register.password.$error" multiple>
                     <div ng-message="required">Password is required.</div>
                   </div>
                 </md-input-container>
               </div>
-              <div layout layout-sm="column">
-                <input class="btn btn-default registerButton" type="submit" value="Login">
+              <div ng-controller="LoginRegisterModalController" layout layout-sm="column">
+                <input ng-click="login(userLogin)" class="btn btn-default registerButton" type="submit" value="Login">
               </div>
             </form>
           </md-content>
