@@ -42,13 +42,13 @@
               </div>
             </div>
             <div autoscroll-down>
-            <div class="row" ng-cloak ng-show="showTest">
+            <div class="row" id="test-box" ng-cloak ng-show="showTest">
               <div class="col-md-offset-3 col-md-6">
                 <p class="codeHeader lead text-center">Test Code</p>
                 <pre><code data-language="javascript">{{question.testText}}</code></pre>
               </div>
             </div>
-            <div class="row" ng-cloak ng-show="showAnswers">
+            <div class="row" id="answer-box" ng-cloak ng-show="showAnswers">
               <div class="col-md-offset-3 col-md-6">
                 <p id="anchor2" class="codeHeader lead text-center">Answer 1</p>
                 <pre><code data-language="javascript">{{question.answers}}</code></pre>
