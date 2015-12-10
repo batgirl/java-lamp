@@ -1,4 +1,3 @@
-function dockerTest() {
-    return "this is a test"
-}
-console.log(dockerTest());
+console.log((function foo() {
+    return 'yo'
+})())

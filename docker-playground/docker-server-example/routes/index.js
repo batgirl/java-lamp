@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/docker', function(req, res, next) {
-  fs.writeFile('public/javascripts/sample.js', req.body.data, function (err) {
+  fs.writeFile('public/javascripts/sample.js', 'console.log(('+req.body.data+')())', function (err) {
     if(err) throw err;
     console.log('wrote to file');
     exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro java-lamp/app-testing node sample.js',
