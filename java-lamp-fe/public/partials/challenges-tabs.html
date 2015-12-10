@@ -6,7 +6,9 @@
           <div ng-repeat="question in questions">
             <div ng-if="question_index == $index">
             <md-button class="md-raised md-primary" ng-click="previous()">Previous</md-button>
+            <i class="material-icons arrow_back">arrow_back</i>
             <md-button class="md-raised md-primary" ng-click="next()">Next</md-button>
+            <i class="material-icons arrow_forward">arrow_forward</i>
             <div class="row">
               <div class="col-md-offset-3 col-md-3">
                 <h2 class="questionHeader">{{question.title}}</h2><br>

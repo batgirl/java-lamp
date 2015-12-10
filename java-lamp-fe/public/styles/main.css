@@ -95,6 +95,18 @@ pre {
   /*background: #2F2D5C;*/
 }
 
+.arrow_forward, .arrow_back {
+  font-size: 48px;
+  color: white;
+/*  outline-color: black;
+  outline-width: 2px;
+*/  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
+}
+
 /*.md-button {
   color: white !important;
   background-color: #11C9AC !important;
