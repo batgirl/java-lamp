@@ -1,4 +1,4 @@
-var app = angular.module('javaLamp', ['ui.ace', 'directives.autoscroll', 'ngMaterial', 'ngMessages', 'ngRoute' ])
+var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngRoute' ])
 
 app.constant('API_URL', 'http://localhost:3000');
 
@@ -36,18 +36,6 @@ app.controller('LandingController', function() {
 
 });
 
-// app.run(['$anchorScroll', function($anchorScroll) {
-//   // $anchorScroll.yOffset = 400;   // always scroll by 50 extra pixels
-// }])
-
-// app.run(function($rootScope, $location, $anchorScroll, $routeParams) {
-//   $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-//     $location.hash();
-//     $anchorScroll();
-//   });
-// });
-
-
 
 function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
   $scope.selectedIndex = $rootScope.selectedIndex;
@@ -61,14 +49,6 @@ function DialogController($rootScope, $scope, $mdDialog, $mdDialog) {
     $mdDialog.hide(answer);
   };
 }
-
-app.directive('aceEditor', function() {
-  return {
-    scope: {},
-    template: 
-    '<div id="editor">function foo() {\n\n}</div><script type="text/javascript" src="/scripts/ace_editor.js">'
-  }
-});
 
 app.config(['$routeProvider', '$locationProvider', '$mdThemingProvider', function ($routeProvider, $locationProvider, $mdThemingProvider){
   $routeProvider

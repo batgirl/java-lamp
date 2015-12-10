@@ -23,7 +23,6 @@
                 <md-button class="showAnswers-btn md-raised md-primary" ng-click="scrollToAnswers()">Answers</md-button>
               </div>
               <div class="col-md-8">
-                <!-- <ace-editor></ace-editor> -->
                 <div ui-ace="{
                   theme: 'monokai',
                   mode: 'javascript',
@@ -50,8 +49,10 @@
             </div>
             <div class="row" ng-cloak ng-show="showAnswers">
               <div class="col-md-offset-3 col-md-6">
-                <p id="anchor2" class="codeHeader lead text-center">Answer 1</p>
-                <pre><code data-language="javascript">{{question.answers}}</code></pre>
+                <p class="codeHeader lead text-center">Answers</p>
+                <div ng-repeat="answer in question.answers">
+                  <pre><code data-language="javascript">{{answer}}</code></pre>
+                </div>
               </div>
             </div>
           </div>
