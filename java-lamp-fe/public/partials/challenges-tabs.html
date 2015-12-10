@@ -24,7 +24,12 @@
               </div>
               <div class="col-md-8">
                 <!-- <ace-editor></ace-editor> -->
-                <div ui-ace>{{}}</div>
+                <div ui-ace="{
+                  theme: 'monokai',
+                  mode: 'javascript',
+                  onLoad: aceLoaded,
+                  onChange: aceChanged
+                }">{{}}</div>
               </div>
             </div>
             <div class="row">

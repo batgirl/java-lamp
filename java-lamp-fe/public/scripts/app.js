@@ -215,9 +215,18 @@ app.controller('ChallengesController', function($scope, $location, $anchorScroll
       }
     }
 
+    $scope.aceLoaded = function(_editor) {
+      console.log(_editor.getSession());
+    }
+
+    $scope.aceChanged = function(e) {
+      $scope.currentEditorValue = e[1].session.doc.$lines.join('\n');
+      console.log($scope.currentEditorValue);
+    }
+
     $scope.submit = function() {
       console.log('submitted');
-      DockerFactory.dockerPost();
+      DockerFactory.dockerPost($scope.currentEditorValue);
     }
 
   // $scope.$on('$locationChangeStart', function(ev) {
@@ -248,8 +257,8 @@ app.factory('DockerFactory', function Docker($q, $http, API_URL) {
   return {
     dockerPost: dockerPost
   }
-  function dockerPost() {
-    return $http.post(API_URL + '/docker', {"data": "function foo(){console.log('wyoming')} foo()"})
+  function dockerPost(editorValue) {
+    return $http.post(API_URL + '/docker', {"data": editorValue})
     .then(function success(response) {
       console.log("response: ", response);
     })

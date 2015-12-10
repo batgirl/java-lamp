@@ -1,1 +1,4 @@
-function foo(){console.log('wyoming')} foo()
+function dockerTest() {
+    return "this is a test"
+}
+console.log(dockerTest());
