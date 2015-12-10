@@ -1,1 +1,1 @@
-console.log('gori');
+function foo(){console.log('wyoming')} foo()

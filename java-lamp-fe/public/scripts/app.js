@@ -249,7 +249,7 @@ app.factory('DockerFactory', function Docker($q, $http, API_URL) {
     dockerPost: dockerPost
   }
   function dockerPost() {
-    return $http.post(API_URL + '/docker', {"data": "hello"})
+    return $http.post(API_URL + '/docker', {"data": "function foo(){console.log('wyoming')} foo()"})
     .then(function success(response) {
       console.log("response: ", response);
     })

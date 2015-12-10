@@ -12,15 +12,23 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/docker', function(req, res, next) {
-  child = exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro java-lamp/app-testing node sample.js',
-    function (error, stdout, stderr) {
-      console.log('stdout: ' + stdout);
-      console.log('stderr: ' + stderr);
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      }
-      res.send(stdout);
-  });
+  fs.writeFile('public/javascripts/sample.js', req.body.data, function (err) {
+    if(err) throw err;
+    console.log('wrote to file');
+    exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro java-lamp/app-testing node sample.js',
+      function (error, stdout, stderr) {
+        console.log('stdout: ' + stdout);
+        console.log('stderr: ' + stderr);
+        if (error !== null) {
+          console.log('exec error: ' + error);
+        }
+        if(!stderr){
+          res.send(stdout);
+        }else{
+          res.send(stderr);
+        }
+    });
+  })
 });
 
 module.exports = router;
