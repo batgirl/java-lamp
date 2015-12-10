@@ -216,7 +216,7 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
     $scope.showTest = !$scope.showTest;
     if ($scope.showTest) {
       setTimeout(function() {
-        $(window).scrollTop(400);  
+        document.getElementById('test-box').scrollIntoView();  
       }, 0);
     }
   };  
@@ -226,7 +226,7 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
     $scope.showAnswers = !$scope.showAnswers;
     if ($scope.showAnswers) {
       setTimeout(function() {
-        $(window).scrollTop(600);  
+        document.getElementById('answer-box').scrollIntoView();  
       }, 0);
     }
   };
