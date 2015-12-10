@@ -12,13 +12,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/docker', function(req, res, next) {
-  child = exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro kevgary/app-testing node sample.js',
+  child = exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro java-lamp/app-testing node sample.js',
     function (error, stdout, stderr) {
       console.log('stdout: ' + stdout);
       console.log('stderr: ' + stderr);
       if (error !== null) {
         console.log('exec error: ' + error);
       }
+      res.send(stdout);
   });
 });
 
