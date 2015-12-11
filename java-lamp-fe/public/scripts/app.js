@@ -269,8 +269,8 @@ app.factory('UserFactory', function UserFactory($http, $q, API_URL2, AuthTokenFa
   return {
     register: register,
     login: login,
-    logout: logout,
-    getUser: getUser
+    logout: logout
+    // getUser: getUser
   };
 
   function register(user){
@@ -301,13 +301,13 @@ app.factory('UserFactory', function UserFactory($http, $q, API_URL2, AuthTokenFa
     return null;
   }
 
-  function getUser() {
-    if(AuthTokenFactory.getToken()) {
-      return $http.get(API_URL2 + '/me')
-    } else {
-      return $q.reject({ data: 'client has no authorization '})
-    }
-  }
+  // function getUser() {
+  //   if(AuthTokenFactory.getToken()) {
+  //     return $http.get(API_URL2 + '/me')
+  //   } else {
+  //     return $q.reject({ data: 'client has no authorization '})
+  //   }
+  // }
 })
 app.factory('AuthTokenFactory', function AuthTokenFactory($window) {
   'use strict';

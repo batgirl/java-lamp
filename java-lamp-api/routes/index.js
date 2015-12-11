@@ -10,6 +10,32 @@ var bcrypt = require('bcrypt');
 var pg = require('pg');
 var conString = process.env.DATABASE_URL;
 
+// nodemailer
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'java.lamp.inc@gmail.com',
+        pass: 'wasteplasticcups'
+    }
+});
+
+var mailOptions = {
+    from: 'Team JavaLamp <java.lamp.inc@gmail.com>', // sender address 
+    to: 'kevgary.dev@gmail.com', // list of receivers 
+    subject: 'Hello', // Subject line 
+    text: 'Hello Fabio', // plaintext body 
+    html: '<b>Hello Fabio</b> <a href="http://localhost:3001/users</a>' // html body 
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
+
 //global
 var jwtSecret = process.env.SECRET;
 
@@ -17,6 +43,10 @@ var jwtSecret = process.env.SECRET;
 // router.use(expressJwt({secret: process.env.SECRET}).unless({ path: [ '/login', '/register' ] }));
 
 //login
+router.post('/verify', function(req, res, next) {
+  console.log('bitches')
+});
+
 router.post('/login', function(req, res, next) {
   if(req.body.user.email == "" || req.body.user.password == "") {
     res.status(400).end('Must provide username and password');
@@ -73,7 +103,7 @@ router.post('/register', function(req, res, next) {
     }
     console.log("connected to database");
     bcrypt.hash(req.body.user.password, 8, function(err, hash) {
-      client.query('INSERT INTO users(name, email, password) VALUES($1, $2, $3) returning id', [req.body.user.username, req.body.user.email, hash], function(err, result) {
+      client.query('INSERT INTO users(name, email, password, token) VALUES($1, $2, $3, $4) returning id', [req.body.user.username, req.body.user.email, hash, null], function(err, result) {
         done();
         if(err) {
           return console.error('error running query', err);

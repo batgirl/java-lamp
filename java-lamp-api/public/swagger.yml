@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: Express Chess API
+  title: JavaLamp API
   description: >
-    #### Backend for Express Chess
+    #### Backend for JavaLamp
 basePath: /
 parameters:
   id:
