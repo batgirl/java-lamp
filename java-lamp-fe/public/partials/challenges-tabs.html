@@ -1,5 +1,5 @@
 <div ng-cloak>
-  <div class="questionCounter">{{question_index + 1}} / 10</div>
+  <div class="questionCounter">{{question_index + 1}} / {{questions.length}}</div>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Challenges">
@@ -19,7 +19,7 @@
               </div>
               <div class="row text-center">
                 <div class="col-md-offset-3 col-md-6">
-                  <p class="lead questionText">{{question.questionText}}</p>
+                  <p class="lead questionText">{{question.questiontext}}</p>
                 </div>
               </div>
               <div class="row">
@@ -33,9 +33,9 @@
                     mode: 'javascript',
                     onLoad: aceLoaded,
                     onChange: aceChanged
-                  }">function foo() {
-    
-  }</div>
+                  }">function fooBarSki() {
+    return "something here"
+}</div>
                 </div>
               </div>
               <div class="row">
@@ -45,17 +45,17 @@
               </div>
               <div class="row text-center">
                 <div class="col-md-offset-5 col-md-2">
-                <md-progress-circular ng-hide="resultData" md-mode="determinate" ng-value="resultLoadValue"></md-progress-circular>
+                <md-progress-circular ng-show="resultLoadValue" ng-if="!resultData" md-mode="indeterminate"></md-progress-circular>
               </div>
               </div>
               <div class="row" ng-if="resultData">
-                <p class="">Your function output:</p>
+                <p id="output-box">Your function output:</p>
                 <pre><code>{{resultData}}</code></pre>
               </div>
               <div class="row" id="test-box" ng-cloak ng-show="showTest">
                 <div class="col-md-offset-3 col-md-6">
                   <p class="codeHeader lead text-center">Test Code</p>
-                  <pre><code data-language="javascript">{{question.testText}}</code></pre>
+                  <pre><code data-language="javascript">{{question.test}}</code></pre>
                 </div>
               </div>
               <div class="row" id="answer-box" ng-cloak ng-show="showAnswers">

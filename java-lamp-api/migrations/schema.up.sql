@@ -8,7 +8,9 @@ CREATE TABLE users (
 
 CREATE TABLE questions (
   id serial primary key,
-  question varchar(200),
+  title varchar(200),
+  questionText varchar(1000),
+  sampleCode varchar(1000),
   test varchar(1000)
 );
 

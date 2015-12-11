@@ -185,7 +185,22 @@ router.delete('/users/:id', function(req, res, next) {
   });
 });
 
-
+router.get('/questions', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    console.log(conString);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log('connected to database');
+    client.query('SELECT * FROM questions', function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
 
 
 
