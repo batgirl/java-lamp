@@ -217,6 +217,9 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
     }
 
     $scope.aceLoaded = function(_editor) {
+      _editor.setOptions({
+        fontSize: 16
+      });
       console.log(_editor.getSession());
     }
 
@@ -225,8 +228,14 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
       console.log($scope.currentEditorValue);
     }
 
+    $scope.resultLoadValue = 0;
+
     $scope.submit = function() {
       console.log('submitted');
+      setInterval(function() {
+        $scope.resultLoadValue += 15;
+      }, 0);
+      $scope.resultLoadValue = 0;
       DockerFactory.dockerPost($scope.currentEditorValue)
         .then(function success(response){
           $scope.resultData = response.data;

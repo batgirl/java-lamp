@@ -3,16 +3,12 @@
   "root": "public",
   "clean_urls": true,
   "error_page": "error.html",
-  "routes": {
-      "*/challenges": "challenges-tabs.html",
-      "/": "landing.html",
-      "**": "error.html"
-      },
+  "routes": [
+    {"/": "landing.html"},
+    {"/challenges": "challenges-tabs.html"},
+    {"**": "error.html"}
+  ],
   "redirects": {
     "/challenges": "/#challenges"
-  },
-  "rewrites": [
-   {"source":"**/**","destination":"/index.html"},
-   {"source":"*/challenges", "destination": "/partials/challenges-tabs.html"}
-  ]
+  }
 }

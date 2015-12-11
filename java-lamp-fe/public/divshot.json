@@ -2,5 +2,8 @@
   "rewrites": [
    {"source":"**/**","destination":"/index.html"},
    {"source":"**/challenges","destination":"/challenges-tabs.html"}
-  ]
+  ],
+  "redirects": {
+    "/challenges": "/#challenges"
+  }
 }
