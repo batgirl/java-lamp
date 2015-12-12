@@ -1,1 +1,3 @@
-console.log((undefined)())
+console.log((function searchRotated() {
+  return "answer";
+})())

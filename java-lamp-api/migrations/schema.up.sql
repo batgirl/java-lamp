@@ -16,6 +16,19 @@ CREATE TABLE questions (
 
 CREATE TABLE answers (
   id serial primary key,
-  answer varchar(200),
-  description varchar(200)
+  answerCode varchar(200),
+  answerText varchar(200)
+);
+
+CREATE TABLE company_answers (
+  id serial primary key,
+  question_id integer references questions(id) on delete cascade,
+  answer_id integer references answers(id) on delete cascade
+);
+
+CREATE TABLE user_answers (
+  id serial primary key,
+  question_id integer references questions(id) on delete cascade,
+  user_id integer references users(id) on delete cascade,
+  answer_id integer references answers(id) on delete cascade
 );

@@ -65,6 +65,7 @@ router.post('/login', function(req, res, next) {
     });
   });
 });
+
 //register
 router.post('/register', function(req, res, next) {
   pg.connect(conString, function(err, client, done) {
@@ -185,6 +186,8 @@ router.delete('/users/:id', function(req, res, next) {
   });
 });
 
+
+// QUESTIONS ROUTES
 router.get('/questions', function(req, res, next) {
   pg.connect(conString, function(err, client, done) {
     console.log(conString);
@@ -202,6 +205,154 @@ router.get('/questions', function(req, res, next) {
   });
 });
 
+router.post('/questions', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    console.log(conString);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log('connected to database');
+    client.query('INSERT INTO questions(title, questionText, sampleCode, test) VALUES ($1, $2, $3, $4) returning id', [req.body.data.attributes.title, req.body.data.attributes.questionText, req.body.data.attributes.sampleCode, req.body.data.attributes.test], function(err, result) {
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.get('/questions/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('SELECT * FROM questions WHERE id = $1', [req.params.id], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.put('/questions/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('UPDATE questions SET title = $2, questionText = $3, sampleCode = $4, test = $5 WHERE id = $1', [req.params.id, req.body.data.attributes.title, req.body.data.attributes.questionText, req.body.data.attributes.sampleCode, req.body.data.attributes.test], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.delete('/questions/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+     console.log(conString)
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('DELETE FROM questions WHERE id = $1', [req.params.id], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+
+// ANSWERS ROUTES
+router.get('/answers', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    console.log(conString);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log('connected to database');
+    client.query('SELECT * FROM answers', function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.post('/answers', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    console.log(conString);
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log('connected to database');
+    client.query('INSERT INTO answers(answerCode, answerText) VALUES ($1, $2) returning id', [req.body.data.attributes.answerCode, req.body.data.attributes.answerText], function(err, result) {
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.get('/answers/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('SELECT * FROM answers WHERE id = $1', [req.params.id], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.put('/answers/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('UPDATE answers SET answerCode = $2, answerText = $3 WHERE id = $1', [req.params.id, req.body.data.attributes.answerCode, req.body.data.attributes.answerText], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.delete('/answers/:id', function(req, res, next) {
+  pg.connect(conString, function(err, client, done) {
+     console.log(conString)
+    if (err) {
+      return console.error('error fetching client from pool', err);
+    }
+    console.log("connected to database");
+    client.query('DELETE FROM answers WHERE id = $1', [req.params.id], function(err, result) {
+      done();
+      if (err) {
+        return console.error('error running query', err);
+      }
+      res.send(result);
+    });
+  });
+});
 
 
 module.exports = router;

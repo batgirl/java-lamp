@@ -180,24 +180,6 @@ var customPrimary = {
 
 app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory, QuestionFactory) {
 
-  // $scope.questions = [
-  //   {title: 'Is Unique',
-  //   questionText: 'Implement an algorithm that tests if each item in a string is unique.',
-  //   testSuite: 'test file',
-  //   testText: 'TEST WILL GO HERE',
-  //   answers: ['answer1', 'answer2']},
-  //   {title: 'Greatest Product',
-  //   questionText: 'Implement an algorithm to determine the greatest product between two elements in an array.',
-  //   testSuite: 'test file',
-  //   testText: 'TEST WILL GO HERE ALSO',
-  //   answers: ['answer3', 'answer4']},
-  //   {title: 'Cats Everywhere',
-  //   questionText: 'Tell us, why are there so many cats everywhere?',
-  //   testSuite: 'test file',
-  //   testText: 'TEST WILL GO HERE ALSO ALSO',
-  //   answers: ['answer5', 'answer6']}
-  //   ];
-
     QuestionFactory.questions()
       .then(function success(response) {
         console.log("response: ", response.data.rows)
@@ -223,10 +205,15 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
     }
 
     $scope.aceLoaded = function(_editor) {
+      _editor.getSession().setUseWorker(false);
+      var sampleCodeArray = $scope.questions[$scope.question_index].samplecode.split('\n');
+      for (var i = 0; i < sampleCodeArray.length; i++) {
+        _editor.renderer.session.doc.$lines[i] = sampleCodeArray[i];
+      }
       _editor.setOptions({
         fontSize: 16
       });
-      console.log(_editor.getSession());
+      $scope.currentEditorValue = _editor.getSession().doc.$lines.join('\n');
     }
 
     $scope.aceChanged = function(e) {

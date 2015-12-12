@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: Express Chess API
+  title: JavaLamp API
   description: >
-    #### Backend for Express Chess
+    #### Backend for JavaLamp
 basePath: /
 parameters:
   id:
@@ -167,3 +167,179 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/UsersCollection'
+  '/questions':
+    get:
+      description: >
+        Get all questions
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/QuestionsCollection'
+    post:
+      description: >
+        Posts a new question
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/QuestionDocument'
+        '400':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        - name: Payload
+          in: body
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - question
+                  attributes:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      questionText:
+                        type: string
+                      sampleCode:
+                        type: string
+                      test:
+                        type: string
+  '/questions/{id}':
+    get:
+      parameters:
+        - $ref: '#/parameters/id'
+      description: >
+        Get one question
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/QuestionsCollection'
+    put:
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: Payload
+          in: body
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - question
+                  attributes:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                      questionText:
+                        type: string
+                      sampleCode:
+                        type: string
+                      test:
+                        type: string
+    delete:
+      parameters:
+        - $ref: '#/parameters/id'
+      description: >
+        Delete one question
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/QuestionsCollection'
+  '/answers':
+    get:
+      description: >
+        Get all answers
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AnswersCollection'
+    post:
+      description: >
+        Posts a new answer
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AnswerDocument'
+        '400':
+          description: Validation error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        - name: Payload
+          in: body
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - answer
+                  attributes:
+                    type: object
+                    properties:
+                      answerCode:
+                        type: string
+                      answerText:
+                        type: string
+  '/answers/{id}':
+    get:
+      parameters:
+        - $ref: '#/parameters/id'
+      description: >
+        Get one answer
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AnswersCollection'
+    put:
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: Payload
+          in: body
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - answer
+                  attributes:
+                    type: object
+                    properties:
+                      answerCode:
+                        type: string
+                      answerText:
+                        type: string
+    delete:
+      parameters:
+        - $ref: '#/parameters/id'
+      description: >
+        Delete one answer
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AnswersCollection'
