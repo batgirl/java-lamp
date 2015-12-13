@@ -178,26 +178,14 @@ var customPrimary = {
   
 }]);
 
-app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory) {
+app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory, QuestionFactory) {
 
-  $scope.questions = [
-    {title: 'Is Unique',
-    questionText: 'Implement an algorithm that tests if each item in a string is unique.',
-    testSuite: 'test file',
-    testText: 'TEST WILL GO HERE',
-    answers: ['answer1', 'answer2']},
-    {title: 'Greatest Product',
-    questionText: 'Implement an algorithm to determine the greatest product between two elements in an array.',
-    testSuite: 'test file',
-    testText: 'TEST WILL GO HERE ALSO',
-    answers: ['answer3', 'answer4']},
-    {title: 'Cats Everywhere',
-    questionText: 'Tell us, why are there so many cats everywhere?',
-    testSuite: 'test file',
-    testText: 'TEST WILL GO HERE ALSO ALSO',
-    answers: ['answer5', 'answer6']}
-    ];
-
+    QuestionFactory.questions()
+      .then(function success(response) {
+        console.log("response: ", response.data.rows)
+        $scope.questions = response.data.rows;
+      });
+      
     $scope.question_index = 0;
 
     $scope.next = function() {
@@ -217,7 +205,15 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
     }
 
     $scope.aceLoaded = function(_editor) {
-      console.log(_editor.getSession());
+      _editor.getSession().setUseWorker(false);
+      var sampleCodeArray = $scope.questions[$scope.question_index].samplecode.split('\n');
+      for (var i = 0; i < sampleCodeArray.length; i++) {
+        _editor.renderer.session.doc.$lines[i] = sampleCodeArray[i];
+      }
+      _editor.setOptions({
+        fontSize: 16
+      });
+      $scope.currentEditorValue = _editor.getSession().doc.$lines.join('\n');
     }
 
     $scope.aceChanged = function(e) {
@@ -225,10 +221,19 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
       console.log($scope.currentEditorValue);
     }
 
+    $scope.resultLoadValue = 0;
+
     $scope.submit = function() {
       console.log('submitted');
+      setInterval(function() {
+        $scope.resultLoadValue += 15;
+      }, 0);
+      $scope.resultLoadValue = 0;
       DockerFactory.dockerPost($scope.currentEditorValue)
         .then(function success(response){
+          setTimeout(function() {
+              document.getElementById('output-box').scrollIntoView();  
+            }, 0);
           $scope.resultData = response.data;
         })
     }
@@ -345,3 +350,12 @@ app.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
   }
 })
 //END JWT AUTH FACTORIES
+
+app.factory('QuestionFactory', function QuestionFactory($q, $http, API_URL2) {
+  return {
+    questions: getQuestions
+  };
+  function getQuestions() {
+    return $http.get(API_URL2 + '/questions')
+  }
+});
