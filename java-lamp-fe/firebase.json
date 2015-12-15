@@ -1,0 +1,13 @@
+{
+  "firebase": "javalamp",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "redirects": [{
+    "source": "/challenges",
+    "destination": "/#challenges",
+    "type": 301   }]
+}
