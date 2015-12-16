@@ -2,7 +2,7 @@ var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngR
   $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-app.constant('API_URL', 'http://159.203.102.106:3000');
+app.constant('API_URL', 'http://159.203.102.106:3001');
 app.constant('API_URL2', 'http://104.236.244.235:3000');
 
 app.controller('LoginRegisterModalController', function($scope, UserFactory) {
@@ -178,31 +178,31 @@ var customPrimary = {
   
 }]);
 
-app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory) {
+app.controller('ChallengesController', function($q, $scope, $location, $anchorScroll, DockerFactory, QuestionFactory) {
 
-    // QuestionFactory.questions()
-    //   .then(function success(response) {
-    //     console.log("response: ", response.data.rows)
-    //     $scope.questions = response.data.rows;
-    //   });
+    QuestionFactory.questions()
+      .then(function success(response) {
+        console.log("response: ", response.data.rows)
+        $scope.questions = response.data.rows;
+      });
       
-    // $scope.question_index = 0;
+    $scope.question_index = 0;
 
-    // $scope.next = function() {
-    //   if ($scope.question_index >= $scope.questions.length-1) {
-    //     $scope.question_index = 0;
-    //   } else {
-    //     $scope.question_index++;
-    //   }
-    // };
+    $scope.next = function() {
+      if ($scope.question_index >= $scope.questions.length-1) {
+        $scope.question_index = 0;
+      } else {
+        $scope.question_index++;
+      }
+    };
 
-    // $scope.previous = function() {
-    //   if ($scope.question_index == 0) {
-    //     $scope.question_index = $scope.questions.length-1;
-    //   } else {
-    //     $scope.question_index--;
-    //   }
-    // }
+    $scope.previous = function() {
+      if ($scope.question_index == 0) {
+        $scope.question_index = $scope.questions.length-1;
+      } else {
+        $scope.question_index--;
+      }
+    }
 
     $scope.aceLoaded = function(_editor) {
       _editor.getSession().setUseWorker(false);
@@ -351,11 +351,11 @@ app.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
 })
 //END JWT AUTH FACTORIES
 
-// app.factory('QuestionFactory', function QuestionFactory($q, $http, API_URL2) {
-//   return {
-//     questions: getQuestions
-//   };
-//   function getQuestions() {
-//     return $http.get(API_URL2 + '/questions')
-//   }
-// });
+app.factory('QuestionFactory', function QuestionFactory($q, $http, API_URL) {
+  return {
+    questions: getQuestions
+  };
+  function getQuestions() {
+    return $http.get(API_URL + '/questions')
+  }
+});
