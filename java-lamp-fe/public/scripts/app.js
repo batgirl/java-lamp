@@ -3,7 +3,7 @@ var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngR
 });
 
 app.constant('API_URL', 'http://localhost:3000');
-app.constant('API_URL2', 'http://localhost:3001');
+app.constant('API_URL2', 'http://159.203.102.106');
 
 app.controller('LoginRegisterModalController', function($scope, UserFactory) {
   $scope.login = function(user) {

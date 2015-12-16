@@ -1,3 +1,3 @@
-console.log((function searchRotated() {
+console.log((function sortStack() {
   return "answer";
 })())
