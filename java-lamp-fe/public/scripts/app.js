@@ -2,8 +2,8 @@ var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngR
   $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-app.constant('API_URL', 'http://localhost:3000');
-app.constant('API_URL2', 'http://159.203.102.106');
+app.constant('DB_URL', 'http://159.203.102.106:3001');
+app.constant('DOCKER_URL', 'http://104.236.244.235:3000');
 
 app.controller('LoginRegisterModalController', function($scope, UserFactory) {
   $scope.login = function(user) {
@@ -259,17 +259,17 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
   };
 });
 
-app.factory('DockerFactory', function Docker($q, $http, API_URL) {
+app.factory('DockerFactory', function Docker($q, $http, DOCKER_URL) {
   return {
     dockerPost: dockerPost
   }
   function dockerPost(editorValue) {
-    return $http.post(API_URL + '/docker', {"data": editorValue})
+    return $http.post(DOCKER_URL + '/docker', {"data": editorValue})
   }
 });
 
 //JWT AUTH FACTORIES
-app.factory('UserFactory', function UserFactory($http, $q, API_URL2, AuthTokenFactory) {
+app.factory('UserFactory', function UserFactory($http, $q, DB_URL, AuthTokenFactory) {
   'use strict';
   return {
     register: register,
@@ -279,7 +279,7 @@ app.factory('UserFactory', function UserFactory($http, $q, API_URL2, AuthTokenFa
   };
 
   function register(user){
-    return $http.post(API_URL2 + '/register',
+    return $http.post(DB_URL + '/register',
     {
       "user": user
     })
@@ -290,7 +290,7 @@ app.factory('UserFactory', function UserFactory($http, $q, API_URL2, AuthTokenFa
   }
 
   function login(user){
-    return $http.post(API_URL2 + '/login',
+    return $http.post(DB_URL + '/login',
     {
       "user": user
     })
@@ -351,11 +351,11 @@ app.factory('AuthInterceptor', function AuthInterceptor(AuthTokenFactory) {
 })
 //END JWT AUTH FACTORIES
 
-app.factory('QuestionFactory', function QuestionFactory($q, $http, API_URL2) {
+app.factory('QuestionFactory', function QuestionFactory($q, $http, DB_URL) {
   return {
     questions: getQuestions
   };
   function getQuestions() {
-    return $http.get(API_URL2 + '/questions')
+    return $http.get(DB_URL + '/questions')
   }
 });

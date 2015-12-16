@@ -15,6 +15,21 @@ html, body {
   min-height: 100%;
 }
 
+.javalamp-logo {
+/*  float: left;*/
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.javalamp-logo-anchor {
+  height: 100px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .ng-view {
   padding-bottom: 50px;
 }
