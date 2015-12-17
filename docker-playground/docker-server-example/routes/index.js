@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Promise = require('promise');
+var execPromise = require('child-process-promise').exec;
 
 var fs = require('fs');
 var exec = require('child_process').exec,
@@ -23,31 +24,37 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/docker', function(req, res, next) {
-  var randomFileName = new Promise(function (resolve, reject) {
-    resolve(randomString(Math.floor(Math.random() * (24 - 4 + 1)) + 4));
-  })
+  var randomDirName = new Promise(function (resolve, reject) {
+    resolve(randomString(Math.floor(Math.random() * (12 - 2 + 1)) + 2));
+  });
 
-  randomFileName.then(function (response) {
-    console.log(response);
+  randomDirName.then(function (dirResponse) {
+    return execPromise('mkdir public/javascripts/' + String(dirResponse))
+      .then(function (response) {
+        return execPromise('touch public/javascripts/' + String(dirResponse) + '/sample.js')
+          .then(function (response) {
+            return dirResponse;
+          })
+      })
   })
-
-  fs.writeFile('public/javascripts/sample.js', 'console.log(('+req.body.data+')())', function (err) {
-    if(err) throw err;
-    console.log('wrote to file');
-    exec('docker run --read-only --rm -v `pwd`/public/javascripts:/data:ro   sample.js',
-      function (error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        if (error !== null) {
-          console.log('exec error: ' + error);
-        }
-        if(!stderr){
-          res.send(stdout);
-        }else{
-          res.send(stderr);
-        }
+  .then(function (dirResponse) {
+    fs.writeFile('public/javascripts/' + String(dirResponse) + '/sample.js', 'console.log(('+req.body.data+')())', function (err) {
+      if(err) throw err;
+      console.log('wrote to file');
+      execPromise('docker run --read-only --rm -v `pwd`/public/javascripts/' + String(dirResponse) + '/:/data:ro java-lamp/app-testing node sample.js')
+        .then(function (response) {
+          if (response.stderr != '') {
+            res.send(response.stderr);
+          } else {
+            res.send(response.stdout);
+          }
+          return response;
+        })
+        .then(function (response) {
+          execPromise('rm -rf public/javascripts/' + String(dirResponse))
+        });
     });
-  })
+  });
 });
 
 module.exports = router;

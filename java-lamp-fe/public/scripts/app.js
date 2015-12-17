@@ -3,7 +3,7 @@ var app = angular.module('javaLamp', ['ui.ace', 'ngMaterial', 'ngMessages', 'ngR
 });
 
 app.constant('DB_URL', 'http://159.203.102.106:3001');
-app.constant('DOCKER_URL', 'http://104.236.244.235:3000');
+app.constant('DOCKER_URL', 'http://localhost:3000');
 
 app.controller('LoginRegisterModalController', function($scope, UserFactory) {
   $scope.login = function(user) {
@@ -229,13 +229,16 @@ app.controller('ChallengesController', function($q, $scope, $location, $anchorSc
         $scope.resultLoadValue += 15;
       }, 0);
       $scope.resultLoadValue = 0;
-      DockerFactory.dockerPost($scope.currentEditorValue)
-        .then(function success(response){
-          setTimeout(function() {
-              document.getElementById('output-box').scrollIntoView();  
-            }, 0);
-          $scope.resultData = response.data;
-        })
+      // for (var i = 0; i < 100; i++) {
+        DockerFactory.dockerPost($scope.currentEditorValue)
+          .then(function success(response){
+            // setTimeout(function() {
+            //     document.getElementById('output-box').scrollIntoView();  
+            //   }, 0);
+            console.log(response.data);
+            $scope.resultData = response.data;
+          })
+      // }
     }
 
   $scope.showTest = false;
