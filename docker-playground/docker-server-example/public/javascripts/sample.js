@@ -1,3 +1,3 @@
-console.log((function sortStack() {
+console.log((function URLify() {
   return "answer";
 })())
